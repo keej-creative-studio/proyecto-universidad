@@ -9,6 +9,8 @@
 
 **/assets:** En esta carpeta van todos los modelos 3d, texuras e imagenes y sonidos que usan el proyecto.
 
+> Los modelos 3d deben ser unicamente en formato .glb
+
 - characters: assets de personajes
 - ui: assets de la interfaz de usuario
 - world: assets del nivel
