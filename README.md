@@ -7,11 +7,12 @@
 
 **/addons:** En esta carpeta van todos los complementos que instalamos al proyecto.
 
+**/assets:** En esta carpeta van todos los modelos 3d, texuras e imagenes y sonidos que usan el proyecto.
+
 - characters: assets de personajes
 - ui: assets de la interfaz de usuario
 - world: assets del nivel
 
-**/assets:** En esta carpeta van todos los modelos 3d, texuras e imagenes y sonidos que usan el proyecto.
 
 **/scenes:** En esta carpeta van todas las escenas de de godot del videojuego.
 
