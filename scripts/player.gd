@@ -18,6 +18,7 @@ var _animation_player
 func _enter_tree():
 	_player_input.set_multiplayer_authority(str(name).to_int())
 	_camera_input.set_multiplayer_authority(str(name).to_int())
+	add_to_group("player")
 
 func _ready():
 	# Default state

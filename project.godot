@@ -23,14 +23,14 @@ config/icon="res://bad_icon.png"
 [autoload]
 
 NetworkManager="*res://scripts/network/network_manager.gd"
-WindowTiler="*res://addons/netfox.extras/window-tiler.gd"
-NetworkTime="*res://addons/netfox/network-time.gd"
-NetworkTimeSynchronizer="*res://addons/netfox/network-time-synchronizer.gd"
-NetworkRollback="*res://addons/netfox/rollback/network-rollback.gd"
-NetworkEvents="*res://addons/netfox/network-events.gd"
-NetworkPerformance="*res://addons/netfox/network-performance.gd"
-Noray="*res://addons/netfox.noray/noray.gd"
-PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+WindowTiler="*uid://dmabyuyef18t3"
+NetworkTime="*uid://dd1mg188dxm6b"
+NetworkTimeSynchronizer="*uid://ba413oi1t7gkh"
+NetworkRollback="*uid://cgmuvgmb47luw"
+NetworkEvents="*uid://coq8oiuuqydqh"
+NetworkPerformance="*uid://b3jgskr06s54b"
+Noray="*uid://dmqmk4qe1j8g4"
+PacketHandshake="*uid://bbbwhtv2rmtp7"
 
 [display]
 
