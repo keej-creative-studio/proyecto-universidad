@@ -23,10 +23,3 @@ func spawn_enemy():
 	# Rebake navigation after spawning enemy
 	await get_tree().create_timer(0.5).timeout
 	navigation_region.bake_navigation_mesh()
-
-func _process(_delta):
-	var players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		var enemies = get_tree().get_nodes_in_group("enemy")
-		for enemy in enemies:
-			enemy.set_target(players[0])

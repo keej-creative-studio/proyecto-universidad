@@ -1,9 +1,13 @@
 extends MovementState
 
 func enter(previous_state: RewindableState, tick: int) -> void:
+	if parent.is_dead:
+		return
 	parent.velocity.y = JUMP_VELOCITY
 
 func tick(delta, tick, is_fresh):
+	if parent.is_dead:
+		return
 	rotate_player_model(delta)
 	move_player(delta)
 	

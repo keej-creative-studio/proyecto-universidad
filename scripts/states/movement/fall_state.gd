@@ -1,6 +1,8 @@
 extends MovementState
 
 func tick(delta, tick, is_fresh):
+	if parent.is_dead:
+		return
 	rotate_player_model(delta)
 	move_player(delta)
 	

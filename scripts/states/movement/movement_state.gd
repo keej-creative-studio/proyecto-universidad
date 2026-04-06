@@ -17,6 +17,8 @@ const JUMP_MOVE_SPEED := 3.0
 
 # Default movement, override as needed
 func move_player(delta: float, speed: float = WALK_SPEED):
+	if parent.is_dead:
+		return
 	parent.velocity *= NetworkTime.physics_factor
 	parent.move_and_slide()
 	parent.velocity /= NetworkTime.physics_factor
@@ -35,6 +37,8 @@ func rotate_player_model(delta: float):
 
 # https://foxssake.github.io/netfox/netfox/tutorials/rollback-caveats/#characterbody-on-floor
 func force_update_is_on_floor():
+	if parent.is_dead:
+		return
 	var old_velocity = parent.velocity
 	parent.velocity *= 0
 	parent.move_and_slide()

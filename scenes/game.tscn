@@ -561,4 +561,4 @@ transform = Transform3D(-0.366729, 0, -0.930328, 0, 1, 0, 0.930328, 0, -0.366729
 [node name="PlayerSpawnPoint2" type="Node3D" parent="World/NavigationRegion3D" unique_id=1310260954]
 
 [node name="Enemy" parent="World/NavigationRegion3D" unique_id=972304346 instance=ExtResource("26_bhx41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7940669, 0, 3.0097847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.344782, 0, 12.43695)
