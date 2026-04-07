@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ch0liofjsn16v"
-path="res://.godot/imported/stone_smallF.glb-29e2eca3687374ebdd8a9957e4da64ba.scn"
+uid="uid://sso7dhwg1aev"
+path="res://.godot/imported/LEVEL.glb-153287b4eb0b5e540de9e21cb8e99fc5.scn"
 
 [deps]
 
-source_file="res://asssets/world/env/stone_smallF.glb"
-dest_files=["res://.godot/imported/stone_smallF.glb-29e2eca3687374ebdd8a9957e4da64ba.scn"]
+source_file="res://asssets/world/env/LEVEL.glb"
+dest_files=["res://.godot/imported/LEVEL.glb-153287b4eb0b5e540de9e21cb8e99fc5.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=5.0
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1
