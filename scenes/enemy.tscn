@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gj0b60n7ico8"]
 
 [ext_resource type="Script" uid="uid://bm73mkbp1cl5w" path="res://scripts/enemy.gd" id="1_enemy"]
+[ext_resource type="AudioStream" uid="uid://danimxfdm6ngt" path="res://asssets/world/env/sounds/moster-growl.mp3" id="2_md0e3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_enemy"]
 radius = 0.4
@@ -26,3 +27,6 @@ shape = SubResource("CapsuleShape3D_enemy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_enemy")
 surface_material_override/0 = SubResource("StandardMaterial3D_enemy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2062599342]
+stream = ExtResource("2_md0e3")

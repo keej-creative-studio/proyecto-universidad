@@ -34,6 +34,7 @@ PacketHandshake="*uid://bbbwhtv2rmtp7"
 
 [display]
 
+window/size/mode=3
 window/size/always_on_top=true
 
 [editor_plugins]

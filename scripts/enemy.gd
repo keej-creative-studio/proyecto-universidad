@@ -111,6 +111,7 @@ func process_attack(delta):
 	look_at(Vector3(target_player.global_position.x, global_position.y, target_player.global_position.z), Vector3.UP)
 	
 	if not has_attacked:
+		$AudioStreamPlayer.play()
 		var dead_player_name = target_player.name
 		target_player.sync_death.rpc(dead_player_name)
 		has_attacked = true

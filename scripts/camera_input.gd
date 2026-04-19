@@ -2,7 +2,6 @@ class_name CameraInput extends Node3D
 
 @export var camera_mount : Node3D
 @export var camera_rot : Node3D
-@export var camera_3D : Camera3D
 @export var rollback_synchronizer : RollbackSynchronizer
 
 var camera_basis : Basis = Basis.IDENTITY
@@ -16,10 +15,19 @@ func _ready():
 	NetworkTime.before_tick_loop.connect(_gather)
 	
 	if multiplayer.get_unique_id() == str(get_parent().name).to_int():
-		camera_3D.current = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	else:
-		camera_3D.current = false
+		hide_local_player_model()
+
+func hide_local_player_model():
+	var player_model = get_node_or_null("../MilitaryMale")
+	if player_model:
+		for child in player_model.get_children():
+			if child is MeshInstance3D:
+				child.layers = 2
+	
+	var camera = get_node_or_null("CameraMount/CameraRot/Camera3D")
+	if camera:
+		camera.cull_mask = 1
 
 func _gather():
 	camera_basis = get_camera_rotation_basis()

@@ -28,6 +28,13 @@ rollback_synchronizer = NodePath("../RollbackSynchronizer")
 
 [node name="MilitaryMale" parent="." unique_id=1527198591 instance=ExtResource("4_fvytd")]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="MilitaryMale" unique_id=1691451618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6820025, 0)
+light_energy = 2.0
+shadow_enabled = true
+spot_range = 6.392761
+spot_angle = 29.857244
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=532110289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.41129, 2.08165e-12)
 shape = SubResource("CapsuleShape3D_ihjgv")
