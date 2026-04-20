@@ -3,7 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://btjx4a4g25xj3" path="res://scenes/network/multiplayer_manager.tscn" id="1_sg3yj"]
 [ext_resource type="Material" uid="uid://dtbe06c2i0ktm" path="res://asssets/world/world_material.tres" id="2_xgt50"]
 [ext_resource type="PackedScene" uid="uid://sso7dhwg1aev" path="res://asssets/world/env/LEVEL.glb" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://8i8yd4gtni1m" path="res://asssets/found_obj/globo.glb" id="6_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://dm4m1icxef4nh" path="res://asssets/found_obj/backrooms_entity_34_dollfaces_wikidot.glb" id="8_dinhu"]
 [ext_resource type="AudioStream" uid="uid://cem3r5twg7je1" path="res://asssets/world/env/sounds/fridge.mp3" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://bsdrpcp0wxivk" path="res://asssets/found_obj/livia_-_mnat_7602.glb" id="9_dinhu"]
+[ext_resource type="PackedScene" uid="uid://b2c38dr2v6hg4" path="res://scenes/cosa.tscn" id="10_kvuet"]
+[ext_resource type="Script" uid="uid://iu8krfl4gqn2" path="res://scripts/cosa.gd" id="11_trtic"]
 [ext_resource type="PackedScene" uid="uid://cys03q34jt762" path="res://scenes/menus/in_game_menu.tscn" id="25_se3ur"]
 [ext_resource type="PackedScene" uid="uid://gj0b60n7ico8" path="res://scenes/enemy.tscn" id="26_bhx41"]
 [ext_resource type="Script" uid="uid://v7v4rg8vhdlu" path="res://scenes/world/level_collider.gd" id="27_collider"]
@@ -92,6 +97,9 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("27_collider")
 generate_colliders = true
 
+[node name="Sketchfab_Scene" parent="World/NavigationRegion3D/Env" unique_id=1243540619 instance=ExtResource("6_kvpfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.30023, 8.982052, 18.835384)
+
 [node name="PlayerSpawnPoint2" type="Node3D" parent="World/NavigationRegion3D" unique_id=1310260954]
 
 [node name="Enemy" parent="World/NavigationRegion3D" unique_id=972304346 instance=ExtResource("26_bhx41")]
@@ -108,3 +116,21 @@ parameters/looping = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/lights" unique_id=63300283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5917234, 22.499023)
+
+[node name="Sketchfab_Scene" parent="." unique_id=1353860592 instance=ExtResource("9_dinhu")]
+transform = Transform3D(4.966137, 0.24646679, -0.52606565, -0.26547483, 4.9901133, -0.16820768, 0.516734, 0.19499972, 4.969403, -27.871647, 4.9269147, 57.922935)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=1410560494]
+transform = Transform3D(0.1998339, 0.007868238, 0.002118677, -0.0066637076, 0.18772848, -0.068655714, -0.0046896823, 0.068528116, 0.18783477, 0.04887867, 0.018445373, 0.4700637)
+light_color = Color(1, 0.32941177, 0.08627451, 1)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=646309871 instance=ExtResource("10_kvuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.326965, 1.4343249, 35.908653)
+script = ExtResource("11_trtic")
+
+[node name="Sketchfab_Scene3" parent="." unique_id=573259795 instance=ExtResource("8_dinhu")]
+transform = Transform3D(-0.0005305056, 0, -0.009985918, 0, 0.01, 0, 0.009985918, 0, -0.0005305056, 7.834936, 1.9011904e-14, 7.225876)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_Scene3" unique_id=1989590990]
+transform = Transform3D(100.00001, 0, 0, 0, 100.00001, 0, 0, 0, 100.00001, 13.811523, 0, 259.98312)
+light_color = Color(1, 0.27450982, 0.49019608, 1)

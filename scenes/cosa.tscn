@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b2c38dr2v6hg4"]
+
+[ext_resource type="PackedScene" uid="uid://dug2qmi0q2nb1" path="res://asssets/found_obj/partygoer_entity_67_remake_backrooms.glb" id="1_83btp"]
+
+[node name="Sketchfab_Scene" unique_id=622043690 instance=ExtResource("1_83btp")]
+
+[node name="Skeleton3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Armature_23/GLTF_created_0" parent_id_path=PackedInt32Array(1561388083) index="0" unique_id=914442790]
+bones/1/rotation = Quaternion(0.9995575, 3.4210984e-08, 1.3839411e-06, -0.029747209)
+bones/2/rotation = Quaternion(-0.43531471, -0.5141875, 0.49090412, 0.5523817)
+bones/3/rotation = Quaternion(-0.034362078, -0.03313799, -0.7898834, 0.61139643)
+bones/4/rotation = Quaternion(0.0099473735, 0.03376936, 0.2920743, 0.9557475)
+bones/6/rotation = Quaternion(0.035921928, 0.0315527, -0.76039994, 0.64769286)
+bones/7/rotation = Quaternion(-0.18408765, 0.47997007, 0.29319987, 0.80608577)
+bones/8/position = Vector3(-5.8629666e-08, 0.98027164, 0.006187711)
+bones/8/rotation = Quaternion(0.22994402, 0.014009043, 0.010945891, 0.9730415)
+bones/9/rotation = Quaternion(-0.025989395, -0.000632017, -0.0243033, 0.9993666)
+bones/10/rotation = Quaternion(0.36562043, -0.02355186, 0.06515352, 0.9281821)
+bones/11/position = Vector3(-0.48330322, 0.7514234, -0.050103374)
+bones/11/rotation = Quaternion(0.242666, -0.018135253, 0.9365199, 0.25241816)
+bones/12/rotation = Quaternion(0.3037262, -0.06363147, -0.21722518, 0.92548084)
+bones/14/rotation = Quaternion(-0.5912918, 0.17670509, 0.7160517, -0.32621962)
+bones/15/rotation = Quaternion(0.08954407, -0.6313229, 0.17271738, 0.7507209)
+bones/16/rotation = Quaternion(0.023799863, 0.04317412, 0.602623, 0.7965018)
+bones/17/rotation = Quaternion(-0.11494795, 0.28290123, -0.088417135, 0.9481225)

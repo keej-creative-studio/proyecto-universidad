@@ -101,14 +101,18 @@ func process_idle(delta):
 
 func process_patrol(delta):
 	play_animation("walk", true, true)
+	if !$AudioStreamPlayer3D.playing:
+		$AudioStreamPlayer3D.play()
 	
 	look_at_player(delta)
 	
 	if target_player != null:
+		$AudioStreamPlayer3D.stop()
 		current_state = State.CHASE
 		return
 	
 	if patrol_points.size() == 0:
+		$AudioStreamPlayer3D.stop()
 		current_state = State.IDLE
 		return
 	
@@ -121,6 +125,7 @@ func process_patrol(delta):
 		velocity.z = direction.z * SPEED_WALK
 		move_and_slide()
 	else:
+		$AudioStreamPlayer3D.stop()
 		current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
 
 func look_at_player(delta):
@@ -155,6 +160,7 @@ func process_chase(delta):
 	move_and_slide()
 
 func process_attack(delta):
+	$AudioStreamPlayer3D.stop()
 	if previous_state != current_state:
 		play_animation("attack")
 		previous_state = current_state
