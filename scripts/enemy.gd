@@ -9,10 +9,14 @@ const SPEED_IDLE = 0.0
 @export var attack_range: float = 0.80
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var monster_model: Node3D = $MonsterModel
+
+var monster_scene: Node3D
+var animation_player: AnimationPlayer
 
 enum State { IDLE, PATROL, CHASE, ATTACK }
-var current_state: State = State.IDLE
+var current_state: State = State.PATROL
+var previous_state: State = State.PATROL
 
 var target_player: Node3D
 var patrol_points: Array[Vector3] = []
@@ -23,6 +27,8 @@ var has_attacked: bool = false
 func _ready():
 	navigation_agent.path_desired_distance = 1.0
 	navigation_agent.target_desired_distance = 0.4
+	
+	load_monster_model()
 	
 	patrol_points = [
 		Vector3(10, 1, 10),
@@ -48,13 +54,60 @@ func _process(delta):
 		State.ATTACK:
 			process_attack(delta)
 
+func load_monster_model():
+	var monster_scene_path = "res://asssets/characters/monster/mounster1.glb"
+	var packed_scene = load(monster_scene_path)
+	if packed_scene:
+		monster_scene = packed_scene.instantiate()
+		monster_model.add_child(monster_scene)
+		
+		if monster_scene.has_node("AnimationPlayer"):
+			animation_player = monster_scene.get_node("AnimationPlayer")
+			print("Animaciones disponibles: ", animation_player.get_animation_list())
+			play_animation("idle")
+		else:
+			print("Warning: El modelo no tiene AnimationPlayer")
+	else:
+		print("Error: No se pudo cargar el modelo del monstruo")
+
+func play_animation(anim_name: String, loop: bool = false, force: bool = false):
+	if animation_player:
+		var anim_list = animation_player.get_animation_list()
+		for anim in anim_list:
+			if anim.to_lower().contains(anim_name.to_lower()):
+				var is_playing = animation_player.current_animation == anim and animation_player.is_playing()
+				if force or not is_playing:
+					if loop:
+						animation_player.play(anim, -1)
+					else:
+						animation_player.play(anim)
+				return
+
 func process_idle(delta):
+	play_animation("idle", false, true)
+	
+	look_at_player(delta)
+	detect_players()
+	
+	if target_player != null:
+		current_state = State.CHASE
+		state_timer = 0
+		return
+	
 	state_timer += delta
-	if state_timer > 2.0:
+	if state_timer > 0.5:
 		state_timer = 0
 		current_state = State.PATROL
 
 func process_patrol(delta):
+	play_animation("walk", true, true)
+	
+	look_at_player(delta)
+	
+	if target_player != null:
+		current_state = State.CHASE
+		return
+	
 	if patrol_points.size() == 0:
 		current_state = State.IDLE
 		return
@@ -70,12 +123,25 @@ func process_patrol(delta):
 	else:
 		current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
 
+func look_at_player(delta):
+	if target_player == null or not is_instance_valid(target_player):
+		return
+	
+	var player_pos = target_player.global_position
+	var direction_to_player = global_position.direction_to(player_pos)
+	var target_rotation = Vector2(direction_to_player.x, direction_to_player.z).angle()
+	rotation.y = lerp_angle(rotation.y, target_rotation, 15 * delta)
+
 func process_chase(delta):
+	play_animation("run", true, true)
+	
 	if target_player == null or not is_instance_valid(target_player) or target_player.is_dead:
 		target_player = null
 		has_attacked = false
 		current_state = State.IDLE
 		return
+	
+	look_at_player(delta)
 	
 	var distance_to_player = global_position.distance_to(target_player.global_position)
 	
@@ -83,17 +149,16 @@ func process_chase(delta):
 		current_state = State.ATTACK
 		return
 	
-	navigation_agent.target_position = target_player.global_position
-	
-	if not navigation_agent.is_navigation_finished():
-		var direction = global_position.direction_to(navigation_agent.get_next_path_position())
-		velocity.x = direction.x * SPEED_RUN
-		velocity.z = direction.z * SPEED_RUN
-		move_and_slide()
-		
-	look_at(Vector3(target_player.global_position.x, global_position.y, target_player.global_position.z), Vector3.UP)
+	var direction = global_position.direction_to(target_player.global_position)
+	velocity.x = direction.x * SPEED_RUN
+	velocity.z = direction.z * SPEED_RUN
+	move_and_slide()
 
 func process_attack(delta):
+	if previous_state != current_state:
+		play_animation("attack")
+		previous_state = current_state
+	
 	if target_player == null or not is_instance_valid(target_player) or target_player.is_dead:
 		target_player = null
 		has_attacked = false
@@ -108,15 +173,21 @@ func process_attack(delta):
 		return
 	
 	velocity = Vector3.ZERO
-	look_at(Vector3(target_player.global_position.x, global_position.y, target_player.global_position.z), Vector3.UP)
+	
+	if global_position.direction_to(target_player.global_position).length() > 0.1:
+		var target_rotation = Vector2(target_player.global_position.x - global_position.x, target_player.global_position.z - global_position.z).angle()
+		rotation.y = lerp_angle(rotation.y, target_rotation, 10 * delta)
 	
 	if not has_attacked:
 		$AudioStreamPlayer.play()
-		var dead_player_name = target_player.name
-		target_player.sync_death.rpc(dead_player_name)
+		await get_tree().create_timer(0.3).timeout
+		if is_instance_valid(target_player):
+			var dead_player_name = target_player.name
+			target_player.sync_death.rpc(dead_player_name)
 		has_attacked = true
 		print("PLAYER ELIMINADO")
-		current_state = State.IDLE
+		await get_tree().create_timer(0.5).timeout
+		current_state = State.PATROL
 		target_player = null
 
 func detect_players():
@@ -143,9 +214,9 @@ func detect_players():
 				print("Player detected! Switching to CHASE")
 	elif closest_distance > detection_radius or closest_player == null:
 		if current_state == State.CHASE:
-			current_state = State.IDLE
 			target_player = null
 			has_attacked = false
+			current_state = State.PATROL
 
 func _physics_process(_delta):
 	if not is_multiplayer_authority():

@@ -7,13 +7,6 @@
 radius = 0.4
 height = 1.8
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_enemy"]
-radius = 0.4
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enemy"]
-albedo_color = Color(1, 0.2, 0.2, 1)
-
 [node name="Enemy" type="CharacterBody3D" unique_id=972304346]
 script = ExtResource("1_enemy")
 
@@ -23,10 +16,7 @@ shape = SubResource("CapsuleShape3D_enemy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=311539638]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=703594359]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-mesh = SubResource("CapsuleMesh_enemy")
-surface_material_override/0 = SubResource("StandardMaterial3D_enemy")
+[node name="MonsterModel" type="Node3D" parent="." unique_id=703594359]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2062599342]
 stream = ExtResource("2_md0e3")
