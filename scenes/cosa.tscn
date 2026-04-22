@@ -4,7 +4,7 @@
 
 [node name="Sketchfab_Scene" unique_id=622043690 instance=ExtResource("1_83btp")]
 
-[node name="Skeleton3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Armature_23/GLTF_created_0" parent_id_path=PackedInt32Array(1561388083) index="0" unique_id=914442790]
+[node name="Skeleton3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Armature_23/GLTF_created_0" parent_id_path=PackedInt32Array(1561243589) index="0" unique_id=76589498]
 bones/1/rotation = Quaternion(0.9995575, 3.4210984e-08, 1.3839411e-06, -0.029747209)
 bones/2/rotation = Quaternion(-0.43531471, -0.5141875, 0.49090412, 0.5523817)
 bones/3/rotation = Quaternion(-0.034362078, -0.03313799, -0.7898834, 0.61139643)

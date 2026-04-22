@@ -14,7 +14,8 @@ const CAMERA_UP_DOWN_MOVEMENT = -1
 func _ready():
 	NetworkTime.before_tick_loop.connect(_gather)
 	
-	if multiplayer.get_unique_id() == str(get_parent().name).to_int():
+	if is_multiplayer_authority():
+		$CameraMount/CameraRot/Camera3D.current = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		hide_local_player_model()
 
@@ -30,9 +31,15 @@ func hide_local_player_model():
 		camera.cull_mask = 1
 
 func _gather():
+	if not is_multiplayer_authority():
+		return
+
 	camera_basis = get_camera_rotation_basis()
 
 func _input(event):
+	if not is_multiplayer_authority():
+		return
+
 	if event is InputEventMouseMotion:
 		rotate_camera(event.relative * CAMERA_MOUSE_ROTATION_SPEED)
 
