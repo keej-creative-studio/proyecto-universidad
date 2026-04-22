@@ -42,7 +42,8 @@ fog_enabled = true
 fog_light_energy = 0.46
 fog_density = 0.02
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0242
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.5176471, 0.5529412, 0.60784316, 1)
 volumetric_fog_length = 50.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lpk0h"]
@@ -169,3 +170,16 @@ light_color = Color(1, 0.32941177, 0.08627451, 1)
 [node name="Sketchfab_Scene2" parent="." unique_id=646309871 instance=ExtResource("10_kvuet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.326965, 1.4343249, 35.908653)
 script = ExtResource("11_trtic")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_Scene2" unique_id=2132923661]
+transform = Transform3D(1, 0, 0, 0, 0.018621637, 0.9998266, 0, -0.9998266, 0.018621637, 0, 41.4786, 0)
+light_color = Color(0.53662866, 0.15617442, 0, 1)
+light_energy = 2000.0
+light_volumetric_fog_energy = 100.0
+light_size = 2.0
+spot_range = 36.2029
+spot_angle = 21.093752
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_Scene2" unique_id=1411432773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0187035, 0, 1.9626966)
+light_color = Color(1, 0.14117648, 0.12941177, 1)

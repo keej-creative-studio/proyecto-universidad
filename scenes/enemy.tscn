@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm73mkbp1cl5w" path="res://scripts/enemy.gd" id="1_enemy"]
 [ext_resource type="AudioStream" uid="uid://danimxfdm6ngt" path="res://asssets/world/env/sounds/moster-growl.mp3" id="2_md0e3"]
+[ext_resource type="AudioStream" uid="uid://cip102te4rp4g" path="res://asssets/world/env/sounds/freesound_community-demonic-woman-scream-6333.mp3" id="3_4ra3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_enemy"]
 radius = 0.4
@@ -27,4 +28,9 @@ stream = ExtResource("2_md0e3")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1734138286]
 stream = SubResource("AudioStreamMP3_md0e3")
 volume_db = 5.0
+unit_size = 2.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1090789419]
+stream = ExtResource("3_4ra3w")
+volume_db = 10.0
 unit_size = 2.0

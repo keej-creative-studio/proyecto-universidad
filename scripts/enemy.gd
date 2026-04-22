@@ -161,6 +161,7 @@ func process_chase(delta):
 
 func process_attack(delta):
 	$AudioStreamPlayer3D.stop()
+	$AudioStreamPlayer3D2.stop()
 	if previous_state != current_state:
 		play_animation("attack")
 		previous_state = current_state
@@ -213,7 +214,8 @@ func detect_players():
 	
 	if closest_player != null and closest_distance <= detection_radius:
 		if target_player == null or target_player != closest_player:
-			target_player = closest_player
+			target_player = closest_player 
+			$AudioStreamPlayer3D2.play()
 			if current_state != State.CHASE and current_state != State.ATTACK:
 				current_state = State.CHASE
 				has_attacked = false
