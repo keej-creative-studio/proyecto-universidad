@@ -47,6 +47,15 @@ func _ready():
 	if _is_local_player:
 		NetworkManager.hide_loading()
 
+func _process(_delta: float) -> void:
+	if not _is_local_player or is_dead:
+		return
+
+	if Input.is_action_just_pressed("interact"):
+		var objectives = get_tree().current_scene.get_node_or_null("GameObjectives")
+		if objectives:
+			objectives.request_interact(str(name))
+
 func show_game_over():
 	if _game_over_instance != null and is_instance_valid(_game_over_instance):
 		return
