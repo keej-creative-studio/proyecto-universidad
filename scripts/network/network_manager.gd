@@ -73,6 +73,8 @@ func set_selected_network(network_selected: AvailableNetworks):
 
 # Use this to kill the network connection and clean up for return to main menu
 func disconnect_from_game():
+	# Clean up any victory screens that might still be in the tree
+	_clean_victory_screens()
 	_load_main_menu_scene()
 	
 	NetworkTime.stop() # Stops the network type synchronizer from spamming ping RPCs after disconnect
@@ -122,3 +124,8 @@ func hide_loading():
 	if _active_loading_scene != null:
 		get_tree().root.remove_child(_active_loading_scene)
 		_active_loading_scene.queue_free()
+
+func _clean_victory_screens():
+	for child in get_tree().root.get_children():
+		if "Victory" in child.name or "victory" in child.name:
+			child.queue_free()
