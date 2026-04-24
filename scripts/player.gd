@@ -70,8 +70,17 @@ func show_game_over():
 	_game_over_instance = instance
 	get_tree().root.add_child(instance)
 	
+func _game_ended_check() -> bool:
+	var objectives = get_tree().current_scene.get_node_or_null("GameObjectives")
+	if objectives and "game_ended" in objectives and objectives.game_ended:
+		return true
+	return false
+
 func die():
 	if is_dead:
+		return
+	
+	if _game_ended_check():
 		return
 	
 	is_dead = true

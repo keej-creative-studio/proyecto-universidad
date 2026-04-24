@@ -14,6 +14,7 @@ var player_carried: Dictionary = {}
 var collected_objects: Dictionary = {}
 var delivered_total: int = 0
 var victory_shown: bool = false
+var game_ended: bool = false
 
 @onready var hud_label: Label = get_node_or_null(hud_label_path) as Label
 @onready var carry_label: Label = get_node_or_null(carry_label_path) as Label
@@ -126,5 +127,10 @@ func _update_hud() -> void:
 		carry_label.text = "Llevas: %d/%d" % [carried, carry_limit]
 
 func _show_victory() -> void:
+	end_game()
 	var victory := VICTORY_SCENE.instantiate()
 	get_tree().root.add_child(victory)
+
+func end_game() -> void:
+	game_ended = true
+	set_process(false)
